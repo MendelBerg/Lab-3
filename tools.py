@@ -3,19 +3,11 @@ import random
 
 
 def timeit(func):
-    def wrapper(arg):
-        if func.__name__ != 'gen_arr_rand_num':
-            print(func.__name__, end=' => ')
-            arr = [num for num in arg]
-            start = time.now()
-            func(arr)
-            print(time.now() - start)
-        else:
-            print(f'arr[{arg}]', end=' => ')
-            start = time.now()
-            arr = func(arg)
-            print(time.now() - start)
-            return arr
+    def wrapper(arr):
+        print(func.__name__, end=' => ')
+        start = time.now()
+        func(arr)
+        print(time.now() - start)
 
     return wrapper
 
@@ -70,9 +62,12 @@ def sort_choice_rev(arr):
                 arr[following], arr[current] = arr[current], arr[following]
 
 
-arr_sort = [sort_bubble, sort_bubble_rev, sort_choice, sort_choice_rev, sort_insert, sort_insert_rev]
+arr_sort = [
+            [sort_bubble, sort_bubble, sort_bubble_rev],
+            [sort_choice, sort_choice, sort_choice_rev],
+            [sort_insert, sort_insert, sort_insert_rev]
+        ]
 
 
-@timeit
 def gen_arr_rand_num(amount):
     return [random.randint(0, 10000) for _ in range(amount)]

@@ -1,7 +1,12 @@
 import tools as t
 
-for amount in [5000, 10000, 20000]:
-    arr = t.gen_arr_rand_num(amount)
-    for sort_func in t.arr_sort:
-        sort_func(arr)
-    print('==============================')
+nums = [5000, 10000, 20000]
+
+for amount in nums:
+    print(f'!!!!!!!!!!!!!!!!!!\tARR #{nums.index(amount)+1}\t!!!!!!!!!!!!!!!!!!!!!!!!')
+    arr_init = t.gen_arr_rand_num(amount)
+    for func_type in t.arr_sort:
+        arr = [num for num in arr_init]
+        for sort_func in func_type:
+            sort_func(arr)
+        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
